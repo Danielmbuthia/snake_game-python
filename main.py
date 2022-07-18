@@ -38,11 +38,9 @@ while game_is_on:
         game_is_on = False
         score_board.game_over()
 
-    # detect collision with all other segment
-    for segment in snake.all_turtles:
-        if segment == snake.head:
-            pass
-        elif snake.head.distance(segment) < 10:
+    # detect collision with all others segment
+    for segment in snake.all_turtles[1:]:      # list slice
+        if snake.head.distance(segment) < 10:
             game_is_on = False
             score_board.game_over()
 
