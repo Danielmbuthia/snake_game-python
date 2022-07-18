@@ -31,5 +31,19 @@ while game_is_on:
     if snake.head.distance(food) < 15:
         food.refresh()
         score_board.increment_score()
+        snake.extend_turtle()
+
+    # detect collision with wall
+    if snake.head.xcor() > 290 or snake.head.xcor() < -290 or snake.head.ycor() > 290 or snake.head.ycor() < -290:
+        game_is_on = False
+        score_board.game_over()
+
+    # detect collision with all other segment
+    for segment in snake.all_turtles:
+        if segment == snake.head:
+            pass
+        elif snake.head.distance(segment) < 10:
+            game_is_on = False
+            score_board.game_over()
 
 screen.exitonclick()
